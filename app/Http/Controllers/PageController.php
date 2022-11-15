@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Comic;
+
 class PageController extends Controller
 {
     /**
@@ -14,6 +16,8 @@ class PageController extends Controller
     public function index()
     {
         //
+        $comics = Comic::all();
+        return view('home', compact('comics'));
     }
 
     /**
@@ -43,9 +47,10 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)
     {
         //
+        return view('show', compact('comic'));
     }
 
     /**
