@@ -28,6 +28,7 @@ class PageController extends Controller
     public function create()
     {
         //
+        return view('create');
     }
 
     /**
@@ -39,12 +40,17 @@ class PageController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $newComic = new Comic();
+        $newComic->fill($data);
+        $newComic->save();
+        return redirect()->route('comics.index', $newComic->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function show(Comic $comic)
@@ -56,7 +62,7 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,7 +74,7 @@ class PageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -79,7 +85,7 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

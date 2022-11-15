@@ -16,4 +16,6 @@
     <p>{{ $comic->description }}</p>
 </body>
 
+
+
 </html>
